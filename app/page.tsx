@@ -472,7 +472,7 @@ export default function Home() {
 
           <div className="border-t border-zinc-800 pt-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-zinc-400 text-sm">© 2024 Harmer Agent. All rights reserved.</p>
+              <p className="text-zinc-400 text-sm">© 2026 Harmer Agent. All rights reserved.</p>
               <div className="flex items-center gap-4">
                 <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">
                   <Code className="w-5 h-5" />
