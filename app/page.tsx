@@ -9,6 +9,8 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [isTerminalOpen, setIsTerminalOpen] = useState(false)
+  const [isWalletOpen, setIsWalletOpen] = useState(false)
+  const [connectedWallet, setConnectedWallet] = useState<string | null>(null)
   const [terminalOutput, setTerminalOutput] = useState([
     { type: 'output' as const, text: 'Harmer Agent Terminal v1.0' },
     { type: 'output' as const, text: 'Type "help" for available commands' },
@@ -107,7 +109,18 @@ export default function Home() {
 
   const handleConnectWallet = () => {
     console.log('[v0] Connect Wallet clicked')
-    alert('Connect Wallet - Coming soon!')
+    setIsWalletOpen(true)
+  }
+
+  const handleWalletConnect = (walletType: string) => {
+    console.log(`[v0] Connecting wallet: ${walletType}`)
+    setConnectedWallet(walletType)
+    setIsWalletOpen(false)
+  }
+
+  const handleDisconnectWallet = () => {
+    console.log('[v0] Disconnecting wallet')
+    setConnectedWallet(null)
   }
 
   const features = [
@@ -189,7 +202,14 @@ export default function Home() {
               <Link href="/docs" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Docs</Link>
               <Link href="/community" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Community</Link>
               <button onClick={handleConnectWallet} className="px-4 py-2 border border-zinc-700 rounded-lg text-sm font-medium hover:bg-zinc-900 transition-colors cursor-pointer">
-                Connect Wallet
+                {connectedWallet ? (
+                  <span className="flex items-center gap-2">
+                    <span className="w-2 h-2 bg-green-400 rounded-full"></span>
+                    {connectedWallet === 'metamask' ? 'MetaMask' : 'Wallet'} Connected
+                  </span>
+                ) : (
+                  'Connect Wallet'
+                )}
               </button>
             </div>
 
@@ -210,7 +230,14 @@ export default function Home() {
               <Link href="/docs" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Docs</Link>
               <Link href="/community" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Community</Link>
               <button onClick={handleConnectWallet} className="w-full px-4 py-2 border border-zinc-700 rounded-lg text-sm font-medium hover:bg-zinc-900">
-                Connect Wallet
+                {connectedWallet ? (
+                  <span className="flex items-center gap-2 justify-center">
+                    <span className="w-2 h-2 bg-green-400 rounded-full"></span>
+                    {connectedWallet === 'metamask' ? 'MetaMask' : 'Wallet'} Connected
+                  </span>
+                ) : (
+                  'Connect Wallet'
+                )}
               </button>
             </div>
           )}
@@ -461,6 +488,94 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Wallet Connection Modal */}
+      {isWalletOpen && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="w-full max-w-md bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl p-6">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold">Connect Wallet</h2>
+              <button
+                onClick={() => setIsWalletOpen(false)}
+                className="text-zinc-400 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Description */}
+            <p className="text-zinc-400 text-sm mb-6">Select a wallet to connect to Harmer Agent</p>
+
+            {/* Wallet Options */}
+            <div className="space-y-3">
+              <button
+                onClick={() => handleWalletConnect('metamask')}
+                className="w-full border border-zinc-700 rounded-lg p-4 hover:border-green-500 hover:bg-zinc-800/50 transition-all flex items-center gap-3 group"
+              >
+                <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center group-hover:bg-orange-500 transition-colors">
+                  <span className="text-white font-bold text-sm">M</span>
+                </div>
+                <div className="text-left">
+                  <div className="font-semibold text-white">MetaMask</div>
+                  <div className="text-xs text-zinc-400">Connect using MetaMask extension</div>
+                </div>
+              </button>
+
+              <button
+                onClick={() => handleWalletConnect('walletconnect')}
+                className="w-full border border-zinc-700 rounded-lg p-4 hover:border-green-500 hover:bg-zinc-800/50 transition-all flex items-center gap-3 group"
+              >
+                <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center group-hover:bg-blue-500 transition-colors">
+                  <span className="text-white font-bold text-sm">W</span>
+                </div>
+                <div className="text-left">
+                  <div className="font-semibold text-white">WalletConnect</div>
+                  <div className="text-xs text-zinc-400">Connect with any WalletConnect provider</div>
+                </div>
+              </button>
+
+              <button
+                onClick={() => handleWalletConnect('coinbase')}
+                className="w-full border border-zinc-700 rounded-lg p-4 hover:border-green-500 hover:bg-zinc-800/50 transition-all flex items-center gap-3 group"
+              >
+                <div className="w-10 h-10 bg-yellow-600 rounded-lg flex items-center justify-center group-hover:bg-yellow-500 transition-colors">
+                  <span className="text-white font-bold text-sm">C</span>
+                </div>
+                <div className="text-left">
+                  <div className="font-semibold text-white">Coinbase Wallet</div>
+                  <div className="text-xs text-zinc-400">Connect using Coinbase Wallet</div>
+                </div>
+              </button>
+            </div>
+
+            {/* Footer */}
+            <div className="mt-6 pt-6 border-t border-zinc-800">
+              <p className="text-xs text-zinc-500 text-center">
+                By connecting a wallet, you agree to our Terms of Service and Privacy Policy
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Wallet Disconnect Confirmation */}
+      {connectedWallet && (
+        <div className="fixed bottom-4 right-4 z-40 bg-zinc-900 border border-zinc-700 rounded-lg p-4 shadow-lg">
+          <div className="flex items-center gap-3">
+            <div className="flex-1">
+              <div className="text-sm font-semibold text-white">Wallet Connected</div>
+              <div className="text-xs text-zinc-400 capitalize">{connectedWallet === 'metamask' ? 'MetaMask' : connectedWallet === 'walletconnect' ? 'WalletConnect' : 'Coinbase Wallet'}</div>
+            </div>
+            <button
+              onClick={handleDisconnectWallet}
+              className="text-xs px-3 py-1 bg-red-900/20 text-red-400 hover:bg-red-900/40 rounded transition-colors border border-red-700/50"
+            >
+              Disconnect
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Terminal Modal */}
       {isTerminalOpen && (
