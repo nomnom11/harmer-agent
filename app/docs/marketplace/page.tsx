@@ -8,54 +8,64 @@ export const metadata = {
 export default function Marketplace() {
   return (
     <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-zinc-500 mb-8">
         <Link href="/docs" className="hover:text-white transition-colors">Docs</Link>
         <span>/</span>
         <span className="text-white">Marketplace</span>
       </nav>
 
-      <h1 className="text-4xl font-bold mb-4">Agent Marketplace</h1>
-      <p className="text-xl text-zinc-400 mb-12">
-        Discover pre-built agents, share your creations, and collaborate with the community.
-      </p>
+      <h1 className="text-4xl font-bold mb-4">Marketplace</h1>
+      <p className="text-xl text-zinc-400 mb-12">Discover pre-built agents, templates, and integrations from the community.</p>
 
       <section id="browse" className="mb-12">
-        <h2 className="text-2xl font-bold mb-4 mt-8">Browsing Agents</h2>
-        <p className="text-zinc-300 mb-4">
-          The Harmer Agent marketplace features hundreds of pre-built agents ready to use or customize.
-        </p>
-        <p className="text-zinc-300 mb-4">Categories include:</p>
-        <ul className="space-y-2 text-zinc-300 ml-4">
-          <li><strong>Research:</strong> Data gathering and analysis agents</li>
-          <li><strong>Trading:</strong> Financial market analysis agents</li>
-          <li><strong>Social Media:</strong> Content management agents</li>
-          <li><strong>Development:</strong> Code and documentation agents</li>
-          <li><strong>Marketing:</strong> Campaign and content agents</li>
-          <li><strong>NFT/Web3:</strong> Blockchain interaction agents</li>
+        <h2 className="text-2xl font-bold mb-4 mt-8">Browse Agents</h2>
+        <p className="text-zinc-300 mb-4">Explore thousands of community-built agents and templates.</p>
+        <ul className="space-y-3 text-zinc-300 ml-4">
+          <li><strong>Research Agents:</strong> Web search and data analysis tools</li>
+          <li><strong>Trading Agents:</strong> Market analysis and automated trading</li>
+          <li><strong>Content Agents:</strong> Writing, editing, and social media management</li>
+          <li><strong>Developer Agents:</strong> Code generation, testing, and debugging</li>
+          <li><strong>Business Agents:</strong> CRM, analytics, and automation tools</li>
         </ul>
       </section>
 
       <section id="submit" className="mb-12">
-        <h2 className="text-2xl font-bold mb-4 mt-8">Submitting Your Agent</h2>
-        <p className="text-zinc-300 mb-4">Share your agent with the community:</p>
-        
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4 mb-4 overflow-x-auto">
-          <pre className="text-sm font-mono text-green-400">{`// 1. Prepare your agent
-const myAgent = new Agent(config);
+        <h2 className="text-2xl font-bold mb-4 mt-8">Submit Your Agent</h2>
+        <p className="text-zinc-300 mb-4">Share your agents with the community and earn rewards.</p>
+        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6 space-y-4">
+          <div>
+            <h4 className="font-bold mb-2">Preparation Checklist</h4>
+            <ul className="text-sm text-zinc-300 space-y-1">
+              <li>✓ Write comprehensive documentation</li>
+              <li>✓ Add example usage and templates</li>
+              <li>✓ Include error handling</li>
+              <li>✓ Test thoroughly with edge cases</li>
+              <li>✓ Add unit tests and examples</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-// 2. Add metadata
-myAgent.metadata = {
-  name: 'My Custom Agent',
-  description: 'What this agent does',
-  category: 'Research',
-  version: '1.0.0',
-  author: 'Your Name',
-  tags: ['research', 'analysis', 'data']
-};
-
-// 3. Export and publish
-await agent.publish({
-  visibility: 'public', // or 'private'
-  price: 0 // or set a price
-});`}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-4 mt-8">Ratings & Reviews</h2>
+        <p className="text-zinc-300 mb-4">Community feedback helps improve agents and build trust.</p>
+        <div className="space-y-3">
+          <div className="border border-zinc-800 rounded-lg p-4">
+            <div className="flex justify-between items-start mb-2">
+              <h4 className="font-bold">Research Agent</h4>
+              <span className="text-yellow-400">★★★★★ 4.8/5</span>
+            </div>
+            <p className="text-sm text-zinc-400">Published by @researcher • 1.2K downloads</p>
+          </div>
+          <div className="border border-zinc-800 rounded-lg p-4">
+            <div className="flex justify-between items-start mb-2">
+              <h4 className="font-bold">Trading Bot</h4>
+              <span className="text-yellow-400">★★★★☆ 4.5/5</span>
+            </div>
+            <p className="text-sm text-zinc-400">Published by @trader • 892 downloads</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}

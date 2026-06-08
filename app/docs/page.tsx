@@ -6,45 +6,46 @@ export const metadata = {
   description: 'Complete guide to building, deploying, and scaling autonomous agents with Harmer Agent.',
 }
 
+const sections = [
+  {
+    icon: BookOpen,
+    title: 'Getting Started',
+    description: 'Learn the fundamentals and get up and running with Harmer Agent in minutes.',
+    href: '/docs/getting-started'
+  },
+  {
+    icon: Brain,
+    title: 'Build Agent',
+    description: 'Master agent creation with configuration, memory, and reasoning capabilities.',
+    href: '/docs/build-agent'
+  },
+  {
+    icon: Globe,
+    title: 'Marketplace',
+    description: 'Discover pre-built agents and share your own creations with the community.',
+    href: '/docs/marketplace'
+  },
+  {
+    icon: Workflow,
+    title: 'Workflows',
+    description: 'Create complex automation workflows with multi-step orchestration.',
+    href: '/docs/workflows'
+  },
+  {
+    icon: Users,
+    title: 'Dashboard',
+    description: 'Monitor, manage, and scale your agents from a unified control panel.',
+    href: '/docs/dashboard'
+  },
+  {
+    icon: Zap,
+    title: 'API Reference',
+    description: 'Complete API documentation for programmatic agent interaction.',
+    href: '/docs/api-reference'
+  }
+]
+
 export default function DocsHome() {
-  const sections = [
-    {
-      icon: BookOpen,
-      title: 'Getting Started',
-      description: 'Learn the fundamentals and get up and running with Harmer Agent in minutes.',
-      href: '/docs/getting-started'
-    },
-    {
-      icon: Brain,
-      title: 'Build Agent',
-      description: 'Master agent creation with configuration, memory, and reasoning capabilities.',
-      href: '/docs/build-agent'
-    },
-    {
-      icon: Globe,
-      title: 'Marketplace',
-      description: 'Discover pre-built agents and share your own creations with the community.',
-      href: '/docs/marketplace'
-    },
-    {
-      icon: Workflow,
-      title: 'Workflows',
-      description: 'Create complex automation workflows with multi-step orchestration.',
-      href: '/docs/workflows'
-    },
-    {
-      icon: Users,
-      title: 'Dashboard',
-      description: 'Monitor, manage, and scale your agents from a unified control panel.',
-      href: '/docs/dashboard'
-    },
-    {
-      icon: Zap,
-      title: 'API Reference',
-      description: 'Complete API documentation for programmatic agent interaction.',
-      href: '/docs/api-reference'
-    }
-  ]
 
   return (
     <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

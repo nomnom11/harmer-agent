@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Menu, X, Zap, Brain, Users, Globe, Workflow, Terminal as TerminalIcon, TrendingUp, Code, Send, MessageSquare } from 'lucide-react'
 

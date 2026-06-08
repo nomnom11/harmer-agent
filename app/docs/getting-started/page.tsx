@@ -2,25 +2,21 @@ import Link from 'next/link'
 
 export const metadata = {
   title: 'Getting Started - Harmer Agent Documentation',
-  description: 'Get up and running with Harmer Agent in minutes. Learn the basics and create your first autonomous agent.',
+  description: 'Get up and running with Harmer Agent in minutes.',
 }
 
 export default function GettingStarted() {
   return (
     <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-zinc-500 mb-8">
         <Link href="/docs" className="hover:text-white transition-colors">Docs</Link>
         <span>/</span>
         <span className="text-white">Getting Started</span>
       </nav>
 
-      {/* Main Content */}
-      <article className="prose prose-invert max-w-none">
+      <article>
         <h1 className="text-4xl font-bold mb-4">Getting Started with Harmer Agent</h1>
-        <p className="text-xl text-zinc-400 mb-8">
-          Learn how to set up your development environment and create your first autonomous agent in just a few minutes.
-        </p>
+        <p className="text-xl text-zinc-400 mb-8">Learn how to set up your development environment and create your first autonomous agent in minutes.</p>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 mt-8">Prerequisites</h2>
@@ -67,4 +63,37 @@ myAgent.addCapability('web_search', {
 });
 
 // Run agent
-myAgent.start();`}
+myAgent.start();`}</pre>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-4 mt-8">Running Your Agent</h2>
+          <p className="text-zinc-300 mb-4">Execute your agent from the terminal:</p>
+          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4 mb-4 overflow-x-auto">
+            <code className="text-sm font-mono text-green-400">$ node agent.js</code>
+          </div>
+          <p className="text-zinc-300">You should see your agent starting and ready to accept tasks!</p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-4 mt-8">Next Steps</h2>
+          <div className="space-y-3">
+            <Link href="/docs/build-agent" className="block p-4 border border-zinc-800 rounded-lg hover:bg-zinc-900 transition-colors">
+              <h4 className="font-bold">Build Agent</h4>
+              <p className="text-sm text-zinc-400">Learn advanced agent configuration and features</p>
+            </Link>
+            <Link href="/docs/workflows" className="block p-4 border border-zinc-800 rounded-lg hover:bg-zinc-900 transition-colors">
+              <h4 className="font-bold">Workflows</h4>
+              <p className="text-sm text-zinc-400">Create complex multi-agent workflows</p>
+            </Link>
+            <Link href="/docs/api-reference" className="block p-4 border border-zinc-800 rounded-lg hover:bg-zinc-900 transition-colors">
+              <h4 className="font-bold">API Reference</h4>
+              <p className="text-sm text-zinc-400">Complete API documentation</p>
+            </Link>
+          </div>
+        </section>
+      </article>
+    </main>
+  )
+}
