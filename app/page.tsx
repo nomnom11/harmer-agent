@@ -19,7 +19,6 @@ export default function Home() {
 
   const handleLaunchAgent = () => {
     console.log('[v0] Launch Agent clicked')
-    alert('Launch Agent - Coming soon! Redirecting to agent builder...')
   }
 
   const handleOpenTerminal = () => {
@@ -110,7 +109,7 @@ export default function Home() {
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-8">
               <button onClick={() => handleNavClick('Home')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Home</button>
-              <button onClick={() => handleNavClick('Build Agent')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Build Agent</button>
+              <Link href="/build-agent" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Build Agent</Link>
               <button onClick={() => handleNavClick('Marketplace')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Marketplace</button>
               <button onClick={() => handleNavClick('Workflows')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Workflows</button>
               <button onClick={() => handleNavClick('Dashboard')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Dashboard</button>
@@ -131,7 +130,7 @@ export default function Home() {
           {isMenuOpen && (
             <div className="md:hidden pb-4 space-y-2">
               <button onClick={() => handleNavClick('Home')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Home</button>
-              <button onClick={() => handleNavClick('Build Agent')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Build Agent</button>
+              <Link href="/build-agent" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Build Agent</Link>
               <button onClick={() => handleNavClick('Marketplace')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Marketplace</button>
               <button onClick={() => handleNavClick('Workflows')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Workflows</button>
               <button onClick={() => handleNavClick('Dashboard')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Dashboard</button>
@@ -172,11 +171,11 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button 
-                  onClick={handleLaunchAgent}
-                  className="px-6 py-3 bg-white text-zinc-950 font-semibold rounded-lg hover:bg-zinc-100 transition-colors cursor-pointer">
+                <Link 
+                  href="/build-agent"
+                  className="px-6 py-3 bg-white text-zinc-950 font-semibold rounded-lg hover:bg-zinc-100 transition-colors cursor-pointer inline-block">
                   Launch Agent
-                </button>
+                </Link>
                 <button 
                   onClick={handleOpenTerminal}
                   className="px-6 py-3 border border-zinc-600 text-white font-semibold rounded-lg hover:bg-zinc-900 transition-colors flex items-center justify-center gap-2 cursor-pointer">
