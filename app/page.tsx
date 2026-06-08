@@ -8,6 +8,13 @@ import { Menu, X, Zap, Brain, Users, Globe, Workflow, Terminal as TerminalIcon, 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false)
+  const [terminalOutput, setTerminalOutput] = useState([
+    { type: 'output' as const, text: 'Harmer Agent Terminal v1.0' },
+    { type: 'output' as const, text: 'Type "help" for available commands' },
+    { type: 'output' as const, text: '' }
+  ])
+  const [terminalInput, setTerminalInput] = useState('')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +30,73 @@ export default function Home() {
 
   const handleOpenTerminal = () => {
     console.log('[v0] Open Terminal clicked')
-    alert('Terminal - Coming soon! Opening terminal interface...')
+    setIsTerminalOpen(true)
+  }
+
+  const handleTerminalCommand = (e: React.KeyboardEvent) => {
+    if (e.key !== 'Enter') return
+    
+    const command = terminalInput.trim().toLowerCase()
+    const newOutput = [...terminalOutput, { type: 'command' as const, text: `$ ${terminalInput}` }]
+
+    if (command === 'help') {
+      newOutput.push(
+        { type: 'output' as const, text: 'Available commands:' },
+        { type: 'output' as const, text: '  harmer create-agent <name>  - Create a new agent' },
+        { type: 'output' as const, text: '  harmer list                 - List all agents' },
+        { type: 'output' as const, text: '  harmer deploy <agent>       - Deploy an agent' },
+        { type: 'output' as const, text: '  harmer status               - Show system status' },
+        { type: 'output' as const, text: '  clear                       - Clear terminal' },
+        { type: 'output' as const, text: '  exit                        - Close terminal' }
+      )
+    } else if (command === 'harmer create-agent harmer-ai') {
+      newOutput.push(
+        { type: 'output' as const, text: 'Creating agent "harmer-ai"...' },
+        { type: 'output' as const, text: 'Initializing model configuration...' },
+        { type: 'output' as const, text: 'Setting up memory banks...' },
+        { type: 'success' as const, text: '✓ Agent created successfully!' },
+        { type: 'output' as const, text: 'Agent ID: agent_7a8b9c0d' }
+      )
+    } else if (command === 'harmer list') {
+      newOutput.push(
+        { type: 'output' as const, text: 'Active Agents:' },
+        { type: 'output' as const, text: '  1. Research Agent     (Status: Running)' },
+        { type: 'output' as const, text: '  2. Trading Agent      (Status: Running)' },
+        { type: 'output' as const, text: '  3. Content Generator  (Status: Idle)' },
+        { type: 'output' as const, text: '  4. Email Router       (Status: Running)' }
+      )
+    } else if (command === 'harmer status') {
+      newOutput.push(
+        { type: 'output' as const, text: 'System Status:' },
+        { type: 'output' as const, text: '  CPU Usage:      42%' },
+        { type: 'output' as const, text: '  Memory:         58%' },
+        { type: 'output' as const, text: '  Active Agents:  24' },
+        { type: 'success' as const, text: '✓ System healthy' }
+      )
+    } else if (command === 'clear') {
+      setTerminalOutput([{ type: 'output' as const, text: '' }])
+      setTerminalInput('')
+      return
+    } else if (command === 'exit') {
+      setIsTerminalOpen(false)
+      setTerminalOutput([
+        { type: 'output' as const, text: 'Harmer Agent Terminal v1.0' },
+        { type: 'output' as const, text: 'Type "help" for available commands' },
+        { type: 'output' as const, text: '' }
+      ])
+      setTerminalInput('')
+      return
+    } else if (command === '') {
+      // Empty command, just add newline
+    } else {
+      newOutput.push(
+        { type: 'error' as const, text: `Command not found: ${command}` },
+        { type: 'output' as const, text: 'Type "help" for available commands' }
+      )
+    }
+
+    setTerminalOutput([...newOutput, { type: 'output' as const, text: '' }])
+    setTerminalInput('')
   }
 
   const handleNavClick = (section) => {
@@ -388,6 +461,70 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Terminal Modal */}
+      {isTerminalOpen && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="w-full max-w-2xl bg-zinc-900 border border-zinc-700 rounded-lg shadow-2xl flex flex-col max-h-[600px]">
+            {/* Terminal Header */}
+            <div className="flex items-center justify-between p-4 border-b border-zinc-700 bg-zinc-800/50">
+              <div className="flex items-center gap-3">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+                <span className="text-sm font-semibold text-zinc-400">Harmer Terminal</span>
+              </div>
+              <button
+                onClick={() => setIsTerminalOpen(false)}
+                className="text-zinc-400 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Terminal Content */}
+            <div className="flex-1 overflow-y-auto p-4 font-mono text-sm bg-zinc-950 space-y-1">
+              {terminalOutput.map((line, idx) => (
+                <div
+                  key={idx}
+                  className={`${
+                    line.type === 'command'
+                      ? 'text-green-400'
+                      : line.type === 'success'
+                      ? 'text-green-400 font-semibold'
+                      : line.type === 'error'
+                      ? 'text-red-400'
+                      : 'text-zinc-400'
+                  }`}
+                >
+                  {line.text}
+                </div>
+              ))}
+            </div>
+
+            {/* Terminal Input */}
+            <div className="p-4 border-t border-zinc-700 bg-zinc-800/30">
+              <div className="flex items-center gap-2 font-mono text-sm">
+                <span className="text-green-400">$</span>
+                <input
+                  type="text"
+                  value={terminalInput}
+                  onChange={(e) => setTerminalInput(e.target.value)}
+                  onKeyDown={handleTerminalCommand}
+                  autoFocus
+                  placeholder="Type command..."
+                  className="flex-1 bg-transparent text-white outline-none"
+                />
+              </div>
+              <div className="text-xs text-zinc-500 mt-2">
+                Try: help, harmer create-agent harmer-ai, harmer list, harmer status, clear, exit
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }
