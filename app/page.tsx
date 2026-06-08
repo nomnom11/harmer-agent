@@ -108,7 +108,7 @@ export default function Home() {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-8">
-              <button onClick={() => handleNavClick('Home')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Home</button>
+              <Link href="/" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Home</Link>
               <Link href="/build-agent" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Build Agent</Link>
               <Link href="/marketplace" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Marketplace</Link>
               <Link href="/workflows" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Workflows</Link>
@@ -129,7 +129,7 @@ export default function Home() {
           {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="md:hidden pb-4 space-y-2">
-              <button onClick={() => handleNavClick('Home')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Home</button>
+              <Link href="/" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Home</Link>
               <Link href="/build-agent" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Build Agent</Link>
               <Link href="/marketplace" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Marketplace</Link>
               <Link href="/workflows" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Workflows</Link>
