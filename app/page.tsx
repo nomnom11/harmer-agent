@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
+import Link from 'next/link'
 import { Menu, X, Zap, Brain, Users, Globe, Workflow, Terminal as TerminalIcon, TrendingUp, Code, Send, MessageSquare } from 'lucide-react'
 
 export default function Home() {
@@ -113,7 +113,7 @@ export default function Home() {
               <button onClick={() => handleNavClick('Marketplace')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Marketplace</button>
               <button onClick={() => handleNavClick('Workflows')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Workflows</button>
               <button onClick={() => handleNavClick('Dashboard')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Dashboard</button>
-              <button onClick={() => handleNavClick('Docs')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Docs</button>
+              <Link href="/docs" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Docs</Link>
               <button onClick={() => handleNavClick('Community')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Community</button>
               <button onClick={handleConnectWallet} className="px-4 py-2 border border-zinc-700 rounded-lg text-sm font-medium hover:bg-zinc-900 transition-colors cursor-pointer">
                 Connect Wallet
@@ -134,7 +134,7 @@ export default function Home() {
               <button onClick={() => handleNavClick('Marketplace')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Marketplace</button>
               <button onClick={() => handleNavClick('Workflows')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Workflows</button>
               <button onClick={() => handleNavClick('Dashboard')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Dashboard</button>
-              <button onClick={() => handleNavClick('Docs')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Docs</button>
+              <Link href="/docs" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Docs</Link>
               <button onClick={() => handleNavClick('Community')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Community</button>
               <button onClick={handleConnectWallet} className="w-full px-4 py-2 border border-zinc-700 rounded-lg text-sm font-medium hover:bg-zinc-900">
                 Connect Wallet
