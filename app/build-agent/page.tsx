@@ -1,9 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Terminal } from '@/components/Terminal'
 import { useTerminal } from '@/hooks/useTerminal'
-import { Zap, Plus, X } from 'lucide-react'
+import { Zap, Plus, X, ArrowLeft } from 'lucide-react'
 
 export default function BuildAgentPage() {
   const { lines, isLoading, createAgent } = useTerminal()
@@ -83,6 +84,12 @@ export default function BuildAgentPage() {
   return (
     <main className="min-h-screen bg-zinc-950 text-white pt-24 pb-12">
       <div className="max-w-7xl mx-auto px-4">
+        {/* Back Button */}
+        <Link href="/" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-8">
+          <ArrowLeft className="w-4 h-4" />
+          <span className="text-sm font-medium">Back to Home</span>
+        </Link>
+
         {/* Header */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
