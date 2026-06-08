@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Zap, ArrowRight, Play, Copy, Share2, Star, Users, Clock, Target } from 'lucide-react'
+import { ArrowLeft, Zap, Play, Copy, Share2, Star, Users, Clock, TrendingUp, CheckCircle2, Gauge } from 'lucide-react'
 
 export default function Workflows() {
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -19,98 +19,114 @@ export default function Workflows() {
     {
       id: 1,
       title: 'Market Data Pipeline',
-      description: 'Collect, process, and analyze market data from multiple sources in real-time.',
+      description: 'Real-time collection, processing, and analysis of market data from multiple sources with automated insights generation.',
       category: 'data',
       complexity: 'Advanced',
       agents: 4,
       runtime: '~2min',
       rating: 4.8,
       reviews: 142,
-      tags: ['Real-time', 'Market Data', 'Analysis']
+      tags: ['Real-time', 'Market Data', 'Analysis'],
+      efficiency: '94%',
+      successRate: '99.8%'
     },
     {
       id: 2,
       title: 'Email Automation Suite',
-      description: 'Automatically categorize, respond to, and manage email workflows with AI assistance.',
+      description: 'Intelligent email categorization, automated responses, and workflow management with AI-powered sentiment analysis.',
       category: 'automation',
       complexity: 'Intermediate',
       agents: 3,
       runtime: '~1min',
       rating: 4.6,
       reviews: 98,
-      tags: ['Email', 'Automation', 'AI']
+      tags: ['Email', 'Automation', 'AI'],
+      efficiency: '87%',
+      successRate: '98.5%'
     },
     {
       id: 3,
       title: 'Social Media Monitor',
-      description: 'Monitor mentions, sentiment analysis, and auto-respond across social platforms.',
+      description: 'Monitor brand mentions, sentiment analysis, and automated responses across all major social platforms.',
       category: 'analysis',
       complexity: 'Intermediate',
       agents: 3,
       runtime: '~3min',
       rating: 4.7,
       reviews: 127,
-      tags: ['Social Media', 'Sentiment', 'Monitoring']
+      tags: ['Social Media', 'Sentiment', 'Monitoring'],
+      efficiency: '91%',
+      successRate: '99.2%'
     },
     {
       id: 4,
       title: 'API Integration Orchestrator',
-      description: 'Seamlessly integrate and orchestrate multiple API endpoints with error handling.',
+      description: 'Seamlessly orchestrate multiple API endpoints with intelligent error handling and rate limiting.',
       category: 'integration',
       complexity: 'Advanced',
       agents: 5,
       runtime: '~4min',
       rating: 4.9,
       reviews: 156,
-      tags: ['API', 'Integration', 'Orchestration']
+      tags: ['API', 'Integration', 'Orchestration'],
+      efficiency: '96%',
+      successRate: '99.9%'
     },
     {
       id: 5,
       title: 'Content Generation Pipeline',
-      description: 'Generate, optimize, and publish content across multiple channels automatically.',
+      description: 'Generate, optimize, and publish high-quality content across multiple channels with SEO enhancement.',
       category: 'automation',
       complexity: 'Intermediate',
       agents: 4,
       runtime: '~2min',
       rating: 4.5,
       reviews: 84,
-      tags: ['Content', 'Generation', 'Publishing']
+      tags: ['Content', 'Generation', 'Publishing'],
+      efficiency: '89%',
+      successRate: '98.1%'
     },
     {
       id: 6,
       title: 'Competitive Analysis Engine',
-      description: 'Analyze competitor activities, pricing, and market positioning in real-time.',
+      description: 'Advanced competitor tracking with pricing analysis, market positioning, and strategic intelligence.',
       category: 'analysis',
       complexity: 'Advanced',
       agents: 4,
       runtime: '~5min',
       rating: 4.8,
       reviews: 119,
-      tags: ['Competitor', 'Analysis', 'Market']
+      tags: ['Competitor', 'Analysis', 'Market'],
+      efficiency: '92%',
+      successRate: '99.3%'
     },
     {
       id: 7,
       title: 'Invoice Processing System',
-      description: 'Automatically extract, validate, and process invoice data with OCR and AI.',
+      description: 'OCR-powered invoice extraction, validation, and processing with automatic data enrichment.',
       category: 'data',
       complexity: 'Intermediate',
       agents: 3,
       runtime: '~1min',
       rating: 4.7,
       reviews: 103,
-      tags: ['Invoice', 'OCR', 'Processing']
+      tags: ['Invoice', 'OCR', 'Processing'],
+      efficiency: '93%',
+      successRate: '99.6%'
     },
     {
       id: 8,
       title: 'Customer Support Workflow',
-      description: 'Intelligent ticket routing, resolution suggestions, and customer follow-up automation.',
+      description: 'Intelligent ticket routing, AI-powered resolution suggestions, and automated customer follow-ups.',
       category: 'automation',
       complexity: 'Intermediate',
       agents: 3,
       runtime: '~2min',
       rating: 4.6,
       reviews: 91,
-      tags: ['Support', 'Tickets', 'Customer']
+      tags: ['Support', 'Tickets', 'Customer'],
+      efficiency: '88%',
+      successRate: '98.7%'
     }
   ]
 
@@ -133,38 +149,53 @@ export default function Workflows() {
           <p className="text-xl text-zinc-400 max-w-2xl">Pre-built multi-agent workflows to automate complex tasks. Build, customize, and deploy in minutes.</p>
         </div>
 
-        {/* Stats */}
+        {/* Stats - Enhanced */}
         <div className="grid md:grid-cols-4 gap-4 mb-16">
-          <div className="border border-zinc-800 rounded-lg p-4">
-            <div className="text-2xl font-bold text-green-400 mb-1">{workflows.length}+</div>
-            <div className="text-sm text-zinc-400">Ready-to-use Workflows</div>
+          <div className="border border-zinc-700 bg-zinc-900/50 rounded-lg p-6 hover:border-zinc-600 transition-colors">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-4xl font-bold text-green-400">{workflows.length}+</span>
+              <TrendingUp className="w-5 h-5 text-green-400" />
+            </div>
+            <div className="text-sm text-zinc-400 font-medium">Ready-to-use Workflows</div>
           </div>
-          <div className="border border-zinc-800 rounded-lg p-4">
-            <div className="text-2xl font-bold text-blue-400 mb-1">2.3K+</div>
-            <div className="text-sm text-zinc-400">Active Users</div>
+          <div className="border border-zinc-700 bg-zinc-900/50 rounded-lg p-6 hover:border-zinc-600 transition-colors">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-4xl font-bold text-blue-400">2.3K</span>
+              <Users className="w-5 h-5 text-blue-400" />
+            </div>
+            <div className="text-sm text-zinc-400 font-medium">Active Users</div>
           </div>
-          <div className="border border-zinc-800 rounded-lg p-4">
-            <div className="text-2xl font-bold text-purple-400 mb-1">1,250+</div>
-            <div className="text-sm text-zinc-400">Workflow Executions/Day</div>
+          <div className="border border-zinc-700 bg-zinc-900/50 rounded-lg p-6 hover:border-zinc-600 transition-colors">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-4xl font-bold text-purple-400">1.2K</span>
+              <Gauge className="w-5 h-5 text-purple-400" />
+            </div>
+            <div className="text-sm text-zinc-400 font-medium">Executions/Day</div>
           </div>
-          <div className="border border-zinc-800 rounded-lg p-4">
-            <div className="text-2xl font-bold text-orange-400 mb-1">4.7★</div>
-            <div className="text-sm text-zinc-400">Average Rating</div>
+          <div className="border border-zinc-700 bg-zinc-900/50 rounded-lg p-6 hover:border-zinc-600 transition-colors">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-4xl font-bold text-orange-400">4.7</span>
+              <Star className="w-5 h-5 fill-orange-400 text-orange-400" />
+            </div>
+            <div className="text-sm text-zinc-400 font-medium">Average Rating</div>
           </div>
         </div>
 
-        {/* Category Filter */}
+        {/* Category Filter - Enhanced */}
         <div className="mb-12">
-          <h2 className="text-lg font-bold mb-4">Filter by Category</h2>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-bold">Filter Workflows</h2>
+            <span className="text-sm text-zinc-500">{filteredWorkflows.length} workflows</span>
+          </div>
           <div className="flex flex-wrap gap-3">
             {categories.map(cat => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                className={`px-4 py-2.5 rounded-lg font-medium transition-all ${
                   selectedCategory === cat.id
-                    ? 'bg-green-500 text-zinc-950'
-                    : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800'
+                    ? 'bg-green-500 text-zinc-950 shadow-lg shadow-green-500/30'
+                    : 'border border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200'
                 }`}
               >
                 {cat.label}
@@ -173,63 +204,85 @@ export default function Workflows() {
           </div>
         </div>
 
-        {/* Workflows Grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
+        {/* Workflows Grid - Enhanced */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 mb-16">
           {filteredWorkflows.map(workflow => (
-            <div key={workflow.id} className="border border-zinc-800 rounded-lg p-6 hover:border-zinc-700 hover:bg-zinc-900/50 transition-all">
+            <div key={workflow.id} className="group border border-zinc-700 bg-zinc-900/30 rounded-xl p-6 hover:border-zinc-600 hover:bg-zinc-900/50 transition-all duration-300 flex flex-col">
               {/* Header */}
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="text-lg font-bold max-w-xs">{workflow.title}</h3>
-                <span className={`text-xs px-2 py-1 rounded font-semibold ${
-                  workflow.complexity === 'Advanced'
-                    ? 'bg-red-900 text-red-200'
-                    : 'bg-blue-900 text-blue-200'
-                }`}>
-                  {workflow.complexity}
-                </span>
+              <div className="flex items-start justify-between gap-3 mb-3">
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-white group-hover:text-green-400 transition-colors">{workflow.title}</h3>
+                </div>
+                <div className="flex gap-2">
+                  <span className={`text-xs px-2.5 py-1 rounded-full font-semibold whitespace-nowrap ${
+                    workflow.complexity === 'Advanced'
+                      ? 'bg-red-900/40 text-red-300 border border-red-700/50'
+                      : 'bg-blue-900/40 text-blue-300 border border-blue-700/50'
+                  }`}>
+                    {workflow.complexity}
+                  </span>
+                </div>
               </div>
 
               {/* Description */}
-              <p className="text-sm text-zinc-400 mb-4">{workflow.description}</p>
+              <p className="text-sm text-zinc-400 mb-5 line-clamp-2">{workflow.description}</p>
+
+              {/* Workflow Metrics - New */}
+              <div className="grid grid-cols-2 gap-3 mb-5 pb-5 border-b border-zinc-800">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-green-400/70" />
+                  <div>
+                    <div className="text-xs text-zinc-500">Success Rate</div>
+                    <div className="text-sm font-semibold text-green-400">{workflow.successRate}</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Gauge className="w-4 h-4 text-orange-400/70" />
+                  <div>
+                    <div className="text-xs text-zinc-500">Efficiency</div>
+                    <div className="text-sm font-semibold text-orange-400">{workflow.efficiency}</div>
+                  </div>
+                </div>
+              </div>
 
               {/* Metadata */}
-              <div className="grid grid-cols-3 gap-3 mb-4 text-xs text-zinc-400">
-                <div className="flex items-center gap-1">
-                  <Users className="w-4 h-4" />
-                  <span>{workflow.agents} Agents</span>
+              <div className="grid grid-cols-3 gap-3 mb-5 text-xs">
+                <div className="flex flex-col gap-1 p-2.5 bg-zinc-800/40 rounded-lg border border-zinc-700/50">
+                  <span className="text-zinc-500">Agents</span>
+                  <span className="font-semibold text-white">{workflow.agents}</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Clock className="w-4 h-4" />
-                  <span>{workflow.runtime}</span>
+                <div className="flex flex-col gap-1 p-2.5 bg-zinc-800/40 rounded-lg border border-zinc-700/50">
+                  <span className="text-zinc-500">Runtime</span>
+                  <span className="font-semibold text-white">{workflow.runtime}</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  <span>{workflow.rating}</span>
+                <div className="flex flex-col gap-1 p-2.5 bg-zinc-800/40 rounded-lg border border-zinc-700/50">
+                  <span className="text-zinc-500">Rating</span>
+                  <span className="font-semibold text-yellow-400">{workflow.rating}</span>
                 </div>
               </div>
 
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {workflow.tags.map(tag => (
-                  <span key={tag} className="text-xs bg-zinc-800 text-zinc-300 px-2 py-1 rounded">
+                  <span key={tag} className="text-xs bg-zinc-800/60 text-zinc-300 px-2.5 py-1 rounded-full border border-zinc-700/50 font-medium">
                     {tag}
                   </span>
                 ))}
               </div>
 
               {/* Review Count */}
-              <p className="text-xs text-zinc-500 mb-4">{workflow.reviews} reviews</p>
+              <p className="text-xs text-zinc-500 mb-5 font-medium">{workflow.reviews} verified reviews</p>
 
               {/* Actions */}
-              <div className="flex gap-3">
-                <button className="flex-1 bg-green-500 hover:bg-green-600 text-zinc-950 font-semibold py-2 rounded-lg flex items-center justify-center gap-2 transition-colors">
+              <div className="flex gap-3 mt-auto">
+                <button className="flex-1 bg-green-500 hover:bg-green-600 text-zinc-950 font-semibold py-2.5 px-3 rounded-lg flex items-center justify-center gap-2 transition-all hover:shadow-lg hover:shadow-green-500/20">
                   <Play className="w-4 h-4" />
                   Use Workflow
                 </button>
-                <button className="p-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-colors">
+                <button className="p-2.5 bg-zinc-800/50 hover:bg-zinc-700 text-zinc-400 hover:text-zinc-200 rounded-lg transition-all border border-zinc-700/50 hover:border-zinc-600/50">
                   <Copy className="w-4 h-4" />
                 </button>
-                <button className="p-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-colors">
+                <button className="p-2.5 bg-zinc-800/50 hover:bg-zinc-700 text-zinc-400 hover:text-zinc-200 rounded-lg transition-all border border-zinc-700/50 hover:border-zinc-600/50">
                   <Share2 className="w-4 h-4" />
                 </button>
               </div>
@@ -237,13 +290,18 @@ export default function Workflows() {
           ))}
         </div>
 
-        {/* Create Workflow CTA */}
-        <div className="bg-gradient-to-r from-zinc-900 to-zinc-800 border border-zinc-700 rounded-lg p-12 text-center">
-          <h2 className="text-2xl font-bold mb-3">Build Your Own Workflow</h2>
-          <p className="text-zinc-400 mb-6 max-w-xl mx-auto">Combine multiple agents to create custom workflows tailored to your needs. Start from scratch or modify existing templates.</p>
-          <Link href="/build-agent" className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-zinc-950 px-6 py-3 rounded-lg font-semibold transition-colors">
+        {/* Create Workflow CTA - Enhanced */}
+        <div className="bg-gradient-to-br from-green-900/20 to-blue-900/20 border border-green-700/50 rounded-xl p-12 text-center backdrop-blur-sm">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+              <Zap className="w-6 h-6 text-green-400" />
+            </div>
+          </div>
+          <h2 className="text-3xl font-bold mb-3">Create Custom Workflows</h2>
+          <p className="text-zinc-300 mb-8 max-w-xl mx-auto leading-relaxed">Combine multiple agents to build sophisticated workflows tailored to your unique business requirements. Start from pre-built templates or create entirely custom workflows.</p>
+          <Link href="/build-agent" className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-zinc-950 px-8 py-3.5 rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-green-500/30">
             <Zap className="w-5 h-5" />
-            Create Workflow
+            Get Started
           </Link>
         </div>
       </div>
