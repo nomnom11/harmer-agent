@@ -111,7 +111,7 @@ export default function Home() {
               <button onClick={() => handleNavClick('Home')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Home</button>
               <Link href="/build-agent" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Build Agent</Link>
               <Link href="/marketplace" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Marketplace</Link>
-              <button onClick={() => handleNavClick('Workflows')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Workflows</button>
+              <Link href="/workflows" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Workflows</Link>
               <button onClick={() => handleNavClick('Dashboard')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Dashboard</button>
               <Link href="/docs" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Docs</Link>
               <Link href="/community" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Community</Link>
@@ -132,7 +132,7 @@ export default function Home() {
               <button onClick={() => handleNavClick('Home')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Home</button>
               <Link href="/build-agent" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Build Agent</Link>
               <Link href="/marketplace" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Marketplace</Link>
-              <button onClick={() => handleNavClick('Workflows')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Workflows</button>
+              <Link href="/workflows" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Workflows</Link>
               <button onClick={() => handleNavClick('Dashboard')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Dashboard</button>
               <Link href="/docs" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Docs</Link>
               <Link href="/community" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Community</Link>
