@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { MessageSquare, Users, HelpCircle, BookOpen } from 'lucide-react'
+import { MessageSquare, Users, HelpCircle, BookOpen, Send } from 'lucide-react'
 
 export const metadata = {
   title: 'Community - Harmer Agent Documentation',
@@ -60,7 +60,12 @@ export default function Community() {
         <h2 className="text-2xl font-bold mb-4 mt-8">Support Channels</h2>
         <div className="space-y-4">
           <div className="border border-zinc-800 rounded-lg p-4">
-            <h4 className="font-bold mb-2">Discord Server</h4>
+            <h4 className="font-bold mb-2">Twitter/X</h4>
+            <p className="text-sm text-zinc-400">Follow us for latest updates and announcements</p>
+            <a href="https://x.com/harmerAgent" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm mt-2 inline-block">Follow @harmerAgent →</a>
+          </div>
+
+          <div className="border border-zinc-800 rounded-lg p-4">
             <p className="text-sm text-zinc-400">Real-time chat with the community and team</p>
             <a href="#" className="text-blue-400 hover:text-blue-300 text-sm mt-2 inline-block">Join Discord →</a>
           </div>

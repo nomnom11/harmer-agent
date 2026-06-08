@@ -110,7 +110,7 @@ export default function Home() {
             <div className="hidden md:flex items-center gap-8">
               <button onClick={() => handleNavClick('Home')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Home</button>
               <Link href="/build-agent" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Build Agent</Link>
-              <button onClick={() => handleNavClick('Marketplace')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Marketplace</button>
+              <Link href="/marketplace" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Marketplace</Link>
               <button onClick={() => handleNavClick('Workflows')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Workflows</button>
               <button onClick={() => handleNavClick('Dashboard')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Dashboard</button>
               <Link href="/docs" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Docs</Link>
@@ -131,7 +131,7 @@ export default function Home() {
             <div className="md:hidden pb-4 space-y-2">
               <button onClick={() => handleNavClick('Home')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Home</button>
               <Link href="/build-agent" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Build Agent</Link>
-              <button onClick={() => handleNavClick('Marketplace')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Marketplace</button>
+              <Link href="/marketplace" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Marketplace</Link>
               <button onClick={() => handleNavClick('Workflows')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Workflows</button>
               <button onClick={() => handleNavClick('Dashboard')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Dashboard</button>
               <Link href="/docs" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Docs</Link>
@@ -374,10 +374,10 @@ export default function Home() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-zinc-400 text-sm">© 2024 Harmer Agent. All rights reserved.</p>
               <div className="flex items-center gap-4">
-                <a href="#" className="text-zinc-400 hover:text-white transition-colors">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">
                   <Code className="w-5 h-5" />
                 </a>
-                <a href="#" className="text-zinc-400 hover:text-white transition-colors">
+                <a href="https://x.com/harmerAgent" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">
                   <Send className="w-5 h-5" />
                 </a>
                 <a href="#" className="text-zinc-400 hover:text-white transition-colors">
