@@ -16,6 +16,16 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const handleLaunchAgent = () => {
+    console.log('[v0] Launch Agent clicked')
+    alert('Launch Agent - Coming soon! Redirecting to agent builder...')
+  }
+
+  const handleOpenTerminal = () => {
+    console.log('[v0] Open Terminal clicked')
+    alert('Terminal - Coming soon! Opening terminal interface...')
+  }
+
   const features = [
     {
       icon: <Brain className="w-6 h-6" />,
@@ -73,10 +83,16 @@ export default function Home() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-white to-zinc-400 rounded-lg flex items-center justify-center font-bold text-zinc-950">
-                H
+              <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
+                <Image
+                  src="/harmer-logo.png"
+                  alt="Harmer Agent"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <span className="font-mono text-sm font-bold tracking-tighter">HARMER</span>
+              <span className="font-mono text-sm font-bold tracking-tighter">HARMER AGENT</span>
             </div>
 
             {/* Desktop Menu */}
@@ -144,10 +160,14 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="px-6 py-3 bg-white text-zinc-950 font-semibold rounded-lg hover:bg-zinc-100 transition-colors">
+                <button 
+                  onClick={handleLaunchAgent}
+                  className="px-6 py-3 bg-white text-zinc-950 font-semibold rounded-lg hover:bg-zinc-100 transition-colors cursor-pointer">
                   Launch Agent
                 </button>
-                <button className="px-6 py-3 border border-zinc-600 text-white font-semibold rounded-lg hover:bg-zinc-900 transition-colors flex items-center justify-center gap-2">
+                <button 
+                  onClick={handleOpenTerminal}
+                  className="px-6 py-3 border border-zinc-600 text-white font-semibold rounded-lg hover:bg-zinc-900 transition-colors flex items-center justify-center gap-2 cursor-pointer">
                   <TerminalIcon className="w-4 h-4" />
                   Open Terminal
                 </button>
