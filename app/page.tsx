@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { Menu, X, Zap, Brain, Users, Globe, Workflow, Terminal as TerminalIcon, TrendingUp, Github, Twitter, MessageSquare } from 'lucide-react'
+import { Menu, X, Zap, Brain, Users, Globe, Workflow, Terminal as TerminalIcon, TrendingUp, Code, Twitter, MessageSquare } from 'lucide-react'
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -344,7 +344,7 @@ export default function Home() {
               <p className="text-zinc-400 text-sm">© 2024 Harmer Agent. All rights reserved.</p>
               <div className="flex items-center gap-4">
                 <a href="#" className="text-zinc-400 hover:text-white transition-colors">
-                  <Github className="w-5 h-5" />
+                  <Code className="w-5 h-5" />
                 </a>
                 <a href="#" className="text-zinc-400 hover:text-white transition-colors">
                   <Twitter className="w-5 h-5" />
