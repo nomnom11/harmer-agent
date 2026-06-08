@@ -26,6 +26,17 @@ export default function Home() {
     alert('Terminal - Coming soon! Opening terminal interface...')
   }
 
+  const handleNavClick = (section) => {
+    console.log(`[v0] Navigation clicked: ${section}`)
+    setIsMenuOpen(false)
+    alert(`${section} section - Coming soon!`)
+  }
+
+  const handleConnectWallet = () => {
+    console.log('[v0] Connect Wallet clicked')
+    alert('Connect Wallet - Coming soon!')
+  }
+
   const features = [
     {
       icon: <Brain className="w-6 h-6" />,
@@ -97,14 +108,14 @@ export default function Home() {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-8">
-              <a href="#" className="text-sm text-zinc-400 hover:text-white transition-colors">Home</a>
-              <a href="#" className="text-sm text-zinc-400 hover:text-white transition-colors">Build Agent</a>
-              <a href="#" className="text-sm text-zinc-400 hover:text-white transition-colors">Marketplace</a>
-              <a href="#" className="text-sm text-zinc-400 hover:text-white transition-colors">Workflows</a>
-              <a href="#" className="text-sm text-zinc-400 hover:text-white transition-colors">Dashboard</a>
-              <a href="#" className="text-sm text-zinc-400 hover:text-white transition-colors">Docs</a>
-              <a href="#" className="text-sm text-zinc-400 hover:text-white transition-colors">Community</a>
-              <button className="px-4 py-2 border border-zinc-700 rounded-lg text-sm font-medium hover:bg-zinc-900 transition-colors">
+              <button onClick={() => handleNavClick('Home')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Home</button>
+              <button onClick={() => handleNavClick('Build Agent')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Build Agent</button>
+              <button onClick={() => handleNavClick('Marketplace')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Marketplace</button>
+              <button onClick={() => handleNavClick('Workflows')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Workflows</button>
+              <button onClick={() => handleNavClick('Dashboard')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Dashboard</button>
+              <button onClick={() => handleNavClick('Docs')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Docs</button>
+              <button onClick={() => handleNavClick('Community')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Community</button>
+              <button onClick={handleConnectWallet} className="px-4 py-2 border border-zinc-700 rounded-lg text-sm font-medium hover:bg-zinc-900 transition-colors cursor-pointer">
                 Connect Wallet
               </button>
             </div>
@@ -118,14 +129,14 @@ export default function Home() {
           {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="md:hidden pb-4 space-y-2">
-              <a href="#" className="block px-4 py-2 text-sm text-zinc-400 hover:text-white">Home</a>
-              <a href="#" className="block px-4 py-2 text-sm text-zinc-400 hover:text-white">Build Agent</a>
-              <a href="#" className="block px-4 py-2 text-sm text-zinc-400 hover:text-white">Marketplace</a>
-              <a href="#" className="block px-4 py-2 text-sm text-zinc-400 hover:text-white">Workflows</a>
-              <a href="#" className="block px-4 py-2 text-sm text-zinc-400 hover:text-white">Dashboard</a>
-              <a href="#" className="block px-4 py-2 text-sm text-zinc-400 hover:text-white">Docs</a>
-              <a href="#" className="block px-4 py-2 text-sm text-zinc-400 hover:text-white">Community</a>
-              <button className="w-full px-4 py-2 border border-zinc-700 rounded-lg text-sm font-medium hover:bg-zinc-900">
+              <button onClick={() => handleNavClick('Home')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Home</button>
+              <button onClick={() => handleNavClick('Build Agent')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Build Agent</button>
+              <button onClick={() => handleNavClick('Marketplace')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Marketplace</button>
+              <button onClick={() => handleNavClick('Workflows')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Workflows</button>
+              <button onClick={() => handleNavClick('Dashboard')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Dashboard</button>
+              <button onClick={() => handleNavClick('Docs')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Docs</button>
+              <button onClick={() => handleNavClick('Community')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Community</button>
+              <button onClick={handleConnectWallet} className="w-full px-4 py-2 border border-zinc-700 rounded-lg text-sm font-medium hover:bg-zinc-900">
                 Connect Wallet
               </button>
             </div>
