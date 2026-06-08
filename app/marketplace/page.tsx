@@ -2,13 +2,26 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Search, Star, Download, TrendingUp, Users, Zap, Code, Brain, Globe, Workflow, Heart, Share2, X, ArrowLeft, Clock, Award } from 'lucide-react'
+import { Search, Star, Download, TrendingUp, Users, Zap, Code, Brain, Globe, Workflow, Heart, Share2, X, ArrowLeft, Clock, Award, CheckCircle2 } from 'lucide-react'
 
 export default function Marketplace() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedAgent, setSelectedAgent] = useState<typeof agents[0] | null>(null)
   const [favorites, setFavorites] = useState<number[]>([])
+  const [isSubmitOpen, setIsSubmitOpen] = useState(false)
+  const [submitStep, setSubmitStep] = useState(1)
+  const [formData, setFormData] = useState({
+    agentName: '',
+    description: '',
+    category: '',
+    version: '1.0.0',
+    author: '',
+    features: '',
+    repositoryUrl: '',
+    documentation: ''
+  })
+  const [submitSuccess, setSubmitSuccess] = useState(false)
 
   const categories = [
     { id: 'all', label: 'All Agents', icon: Zap },
@@ -124,6 +137,62 @@ export default function Marketplace() {
         ? prev.filter(id => id !== agentId)
         : [...prev, agentId]
     )
+  }
+
+  const handleSubmitAgent = () => {
+    if (submitStep === 1) {
+      if (!formData.agentName || !formData.description || !formData.category) {
+        alert('Please fill in all required fields')
+        return
+      }
+      setSubmitStep(2)
+    } else if (submitStep === 2) {
+      if (!formData.author || !formData.repositoryUrl) {
+        alert('Please fill in all required fields')
+        return
+      }
+      setSubmitStep(3)
+    } else if (submitStep === 3) {
+      setSubmitSuccess(true)
+      setTimeout(() => {
+        setIsSubmitOpen(false)
+        setSubmitStep(1)
+        setSubmitSuccess(false)
+        setFormData({
+          agentName: '',
+          description: '',
+          category: '',
+          version: '1.0.0',
+          author: '',
+          features: '',
+          repositoryUrl: '',
+          documentation: ''
+        })
+      }, 2000)
+    }
+  }
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const closeSubmitModal = () => {
+    setIsSubmitOpen(false)
+    setSubmitStep(1)
+    setFormData({
+      agentName: '',
+      description: '',
+      category: '',
+      version: '1.0.0',
+      author: '',
+      features: '',
+      repositoryUrl: '',
+      documentation: ''
+    })
   }
 
   const filteredAgents = agents.filter(agent => {
@@ -255,6 +324,224 @@ export default function Marketplace() {
         </div>
       )}
 
+      {/* Submit Agent Modal */}
+      {isSubmitOpen && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="w-full max-w-2xl bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl max-h-[80vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-zinc-700 sticky top-0 bg-zinc-900">
+              <h2 className="text-2xl font-bold">Submit Your Agent</h2>
+              <button
+                onClick={closeSubmitModal}
+                className="text-zinc-400 hover:text-white transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Success State */}
+            {submitSuccess && (
+              <div className="p-12 text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="p-4 bg-green-900/30 border border-green-700/50 rounded-full">
+                    <CheckCircle2 className="w-12 h-12 text-green-400" />
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Agent Submitted Successfully!</h3>
+                <p className="text-zinc-300 mb-6">Your agent has been submitted for review. You'll receive a notification once it's approved and published to the marketplace.</p>
+                <p className="text-sm text-zinc-500">Redirecting in 2 seconds...</p>
+              </div>
+            )}
+
+            {!submitSuccess && (
+              <>
+                {/* Progress Indicator */}
+                <div className="p-6 border-b border-zinc-700">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-semibold">Step {submitStep} of 3</span>
+                    <span className="text-sm text-zinc-400">{Math.round((submitStep / 3) * 100)}%</span>
+                  </div>
+                  <div className="w-full bg-zinc-800 rounded-full h-2">
+                    <div 
+                      className="bg-green-500 h-2 rounded-full transition-all duration-300"
+                      style={{ width: `${(submitStep / 3) * 100}%` }}
+                    ></div>
+                  </div>
+                </div>
+
+                {/* Form Content */}
+                <div className="p-6">
+                  {/* Step 1: Basic Info */}
+                  {submitStep === 1 && (
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-semibold mb-4">Basic Information</h3>
+                      
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Agent Name *</label>
+                        <input
+                          type="text"
+                          name="agentName"
+                          value={formData.agentName}
+                          onChange={handleFormChange}
+                          placeholder="e.g., Advanced Research Agent"
+                          className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-green-500 transition-colors"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Description *</label>
+                        <textarea
+                          name="description"
+                          value={formData.description}
+                          onChange={handleFormChange}
+                          placeholder="Describe what your agent does..."
+                          rows={4}
+                          className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-green-500 transition-colors"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Category *</label>
+                        <select
+                          name="category"
+                          value={formData.category}
+                          onChange={handleFormChange}
+                          className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-green-500 transition-colors"
+                        >
+                          <option value="">Select a category</option>
+                          <option value="research">Research</option>
+                          <option value="trading">Trading</option>
+                          <option value="content">Content</option>
+                          <option value="developer">Developer</option>
+                          <option value="workflow">Workflows</option>
+                        </select>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Step 2: Details */}
+                  {submitStep === 2 && (
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-semibold mb-4">Agent Details</h3>
+                      
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium mb-2">Author *</label>
+                          <input
+                            type="text"
+                            name="author"
+                            value={formData.author}
+                            onChange={handleFormChange}
+                            placeholder="e.g., @your_username"
+                            className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-green-500 transition-colors"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium mb-2">Version</label>
+                          <input
+                            type="text"
+                            name="version"
+                            value={formData.version}
+                            onChange={handleFormChange}
+                            placeholder="1.0.0"
+                            className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-green-500 transition-colors"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Key Features (comma-separated)</label>
+                        <input
+                          type="text"
+                          name="features"
+                          value={formData.features}
+                          onChange={handleFormChange}
+                          placeholder="e.g., Web Search, Data Analysis, Report Generation"
+                          className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-green-500 transition-colors"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Repository URL *</label>
+                        <input
+                          type="text"
+                          name="repositoryUrl"
+                          value={formData.repositoryUrl}
+                          onChange={handleFormChange}
+                          placeholder="https://github.com/username/agent-name"
+                          className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-green-500 transition-colors"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Step 3: Review */}
+                  {submitStep === 3 && (
+                    <div>
+                      <h3 className="text-lg font-semibold mb-4">Review Your Submission</h3>
+                      
+                      <div className="space-y-3 bg-zinc-800/50 rounded-lg p-4">
+                        <div>
+                          <span className="text-sm text-zinc-400">Agent Name</span>
+                          <p className="font-semibold">{formData.agentName}</p>
+                        </div>
+                        <div className="pt-3 border-t border-zinc-700">
+                          <span className="text-sm text-zinc-400">Author</span>
+                          <p className="font-semibold">{formData.author}</p>
+                        </div>
+                        <div className="pt-3 border-t border-zinc-700">
+                          <span className="text-sm text-zinc-400">Category</span>
+                          <p className="font-semibold capitalize">{formData.category}</p>
+                        </div>
+                        <div className="pt-3 border-t border-zinc-700">
+                          <span className="text-sm text-zinc-400">Version</span>
+                          <p className="font-semibold">{formData.version}</p>
+                        </div>
+                        <div className="pt-3 border-t border-zinc-700">
+                          <span className="text-sm text-zinc-400">Description</span>
+                          <p className="text-sm text-zinc-300">{formData.description}</p>
+                        </div>
+                      </div>
+
+                      <div className="mt-6 p-4 bg-blue-900/20 border border-blue-700/50 rounded-lg">
+                        <p className="text-sm text-zinc-300">
+                          ✓ Your agent will be reviewed by our team before being published to the marketplace
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Modal Actions */}
+                <div className="flex gap-3 p-6 border-t border-zinc-700 bg-zinc-800/50">
+                  {submitStep > 1 && (
+                    <button
+                      onClick={() => setSubmitStep(submitStep - 1)}
+                      className="px-6 py-2.5 border border-zinc-700 rounded-lg hover:border-zinc-600 transition-colors font-medium"
+                    >
+                      Back
+                    </button>
+                  )}
+                  <button
+                    onClick={closeSubmitModal}
+                    className="px-6 py-2.5 text-zinc-400 hover:text-white transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSubmitAgent}
+                    className="flex-1 px-6 py-2.5 bg-green-500 hover:bg-green-600 text-zinc-950 font-semibold rounded-lg transition-all hover:shadow-lg hover:shadow-green-500/20"
+                  >
+                    {submitStep === 3 ? 'Submit Agent' : 'Continue'}
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="pt-24 pb-12 border-b border-zinc-800 bg-gradient-to-b from-zinc-900 to-zinc-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -266,7 +553,7 @@ export default function Marketplace() {
           <h1 className="text-5xl font-bold mb-4">Agent Marketplace</h1>
           <p className="text-xl text-zinc-400 mb-8 max-w-2xl">Discover, share, and collaborate with thousands of autonomous agents built by the community.</p>
           
-          {/* Search Bar - Enhanced */}
+          {/* Search Bar */}
           <div className="relative">
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-zinc-500" />
             <input
@@ -282,7 +569,7 @@ export default function Marketplace() {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Categories - Enhanced */}
+        {/* Categories */}
         <div className="mb-12">
           <h2 className="text-lg font-semibold mb-4">Filter by Category</h2>
           <div className="flex flex-wrap gap-3">
@@ -306,7 +593,7 @@ export default function Marketplace() {
           </div>
         </div>
 
-        {/* Stats - Enhanced */}
+        {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
           <div className="bg-zinc-900/50 border border-zinc-700 rounded-lg p-6 hover:border-zinc-600 transition-colors">
             <div className="text-3xl font-bold mb-1 text-green-400">4,280+</div>
@@ -326,7 +613,7 @@ export default function Marketplace() {
           </div>
         </div>
 
-        {/* Agents Grid - Enhanced */}
+        {/* Agents Grid */}
         <div>
           <h2 className="text-lg font-semibold mb-6">
             {filteredAgents.length} {filteredAgents.length === 1 ? 'Agent' : 'Agents'} Found
@@ -339,9 +626,9 @@ export default function Marketplace() {
                   key={agent.id}
                   className="group bg-zinc-900/50 border border-zinc-700 rounded-lg p-6 hover:border-zinc-600 hover:bg-zinc-900 transition-all hover:shadow-lg hover:shadow-white/10 flex flex-col"
                 >
-                  {/* Header with Badge and Favorite */}
-                  <div className="flex items-start justify-between mb-3">
-                    {agent.badge && (
+                  {/* Badge */}
+                  {agent.badge && (
+                    <div className="mb-3">
                       <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${
                         agent.badge === 'Trending' ? 'bg-red-900/40 text-red-300 border border-red-700/50' :
                         agent.badge === 'Featured' ? 'bg-yellow-900/40 text-yellow-300 border border-yellow-800/50' :
@@ -349,18 +636,8 @@ export default function Marketplace() {
                       }`}>
                         {agent.badge}
                       </span>
-                    )}
-                    <button
-                      onClick={() => toggleFavorite(agent.id)}
-                      className={`p-2 rounded-lg transition-all ${
-                        favorites.includes(agent.id)
-                          ? 'bg-red-900/30 text-red-400'
-                          : 'bg-zinc-800 text-zinc-400 hover:text-white opacity-0 group-hover:opacity-100'
-                      }`}
-                    >
-                      <Heart className={`w-4 h-4 ${favorites.includes(agent.id) ? 'fill-current' : ''}`} />
-                    </button>
-                  </div>
+                    </div>
+                  )}
                   
                   {/* Title */}
                   <h3 className="text-lg font-bold mb-2 group-hover:text-green-400 transition-colors">{agent.name}</h3>
@@ -413,11 +690,14 @@ export default function Marketplace() {
           )}
         </div>
 
-        {/* CTA Section - Enhanced */}
+        {/* CTA Section */}
         <div className="mt-16 bg-gradient-to-r from-green-900/20 to-blue-900/20 border border-green-700/50 rounded-xl p-8 text-center backdrop-blur-sm">
           <h3 className="text-3xl font-bold mb-3">Ready to Share Your Agent?</h3>
           <p className="text-zinc-300 mb-6 max-w-2xl mx-auto">Publish your agents to the marketplace and reach thousands of developers worldwide.</p>
-          <button className="px-8 py-3.5 bg-green-500 hover:bg-green-600 text-zinc-950 font-semibold rounded-lg transition-all hover:shadow-lg hover:shadow-green-500/30">
+          <button 
+            onClick={() => setIsSubmitOpen(true)}
+            className="px-8 py-3.5 bg-green-500 hover:bg-green-600 text-zinc-950 font-semibold rounded-lg transition-all hover:shadow-lg hover:shadow-green-500/30"
+          >
             Submit Your Agent
           </button>
         </div>
