@@ -114,7 +114,7 @@ export default function Home() {
               <button onClick={() => handleNavClick('Workflows')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Workflows</button>
               <button onClick={() => handleNavClick('Dashboard')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Dashboard</button>
               <Link href="/docs" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Docs</Link>
-              <button onClick={() => handleNavClick('Community')} className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Community</button>
+              <Link href="/community" className="text-sm text-zinc-400 hover:text-white transition-colors cursor-pointer">Community</Link>
               <button onClick={handleConnectWallet} className="px-4 py-2 border border-zinc-700 rounded-lg text-sm font-medium hover:bg-zinc-900 transition-colors cursor-pointer">
                 Connect Wallet
               </button>
@@ -135,7 +135,7 @@ export default function Home() {
               <button onClick={() => handleNavClick('Workflows')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Workflows</button>
               <button onClick={() => handleNavClick('Dashboard')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Dashboard</button>
               <Link href="/docs" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Docs</Link>
-              <button onClick={() => handleNavClick('Community')} className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Community</button>
+              <Link href="/community" className="block w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-white">Community</Link>
               <button onClick={handleConnectWallet} className="w-full px-4 py-2 border border-zinc-700 rounded-lg text-sm font-medium hover:bg-zinc-900">
                 Connect Wallet
               </button>
